@@ -11,9 +11,19 @@
   "license": "ISC",
   "dependencies": {
     "front-matter": "^4.0.2",
-    "markdown-it": "^13.0.1"
+    "jest": "^29.4.3",
+    "js-yaml": "^4.1.0",
+    "lodash": "^4.17.21",
+    "markdown-it": "^13.0.1",
+    "rewire": "^6.0.0"
   },
   "devDependencies": {
-    "@types/markdown-it": "^12.2.3"
+    "@babel/core": "^7.20.12",
+    "@babel/preset-env": "^7.20.2",
+    "@types/jest": "^29.4.0",
+    "@types/js-yaml": "^4.0.5",
+    "@types/lodash": "^4.14.191",
+    "@types/markdown-it": "^12.2.3",
+    "babel-jest": "^29.4.3"
   }
 }

@@ -1,0 +1,10 @@
+{
+    "schemaVersion": "1",
+    "javascript": {
+        "name": "vector-core",
+        "rootDir": "./",
+        "testEnvironment": "node",
+        "testLocationStrategy": "relativeToProjectRoot",
+        "testLocationFolder": "./test"
+    }
+}
