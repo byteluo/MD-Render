@@ -1,4 +1,3 @@
-import { resolve, dirname, basename } from "path";
 import fm from "front-matter";
 import MarkdownIt from "markdown-it";
 import { getMarkdownFileFromCache } from "./io";
@@ -31,7 +30,7 @@ export async function renderMarkdownFile(filePath: string): Promise<HookObj> {
   );
 
   const rawContent = fileDescriptor.content;
-  let { attributes, body: markdownBody } = readFrontMatter(rawContent) as any;
+  let { attributes, body: markdownBody } = fm(rawContent) as any;
 
   const id = getMergeProps("id", attributes, fileDescriptor.md5);
   const title = getMergeProps("title", attributes, fileDescriptor);
@@ -53,8 +52,4 @@ export async function renderMarkdownFile(filePath: string): Promise<HookObj> {
       markdownBody,
     },
   };
-}
-
-export function readFrontMatter(content: string) {
-  return fm(content);
 }

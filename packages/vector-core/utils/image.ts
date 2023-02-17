@@ -1,4 +1,6 @@
 import { extname } from "path";
+import { isPlainObject, forEach } from "lodash";
+import yaml from "js-yaml";
 
 interface ImageRepository {
   [fileURI: string]: {
@@ -18,6 +20,28 @@ function isImageUrl(url: string) {
 
 const markdownImageRender = {
   async renderHeader(filePath: string, content: string) {
+    function collectImageFromAttrs(attrs: any): Array<string> {
+      function flattenAttrs(attrs: any, arr: any[] = []) {
+        const isComplexValue = (el: any) =>
+          Array.isArray(el) || isPlainObject(el);
+        if (isComplexValue(attrs)) {
+          forEach(attrs, (value, key) => {
+            if (isComplexValue(value)) {
+              flattenAttrs(value, arr);
+            } else {
+              arr.push({ obj: attrs, key });
+            }
+          });
+        }
+        return arr;
+      }
+      const arr = flattenAttrs(attrs);
+      const imageWrapper = arr
+        .filter(({ obj, key }) => isImageUrl(obj[key]))
+        .map(({ obj, key }) => obj[key]);
+      return [];
+    }
+
     return "";
   },
   async renderBody(filePath: string, content: string) {
