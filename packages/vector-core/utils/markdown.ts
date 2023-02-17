@@ -3,6 +3,7 @@ import fm from "front-matter";
 import MarkdownIt from "markdown-it";
 import { getMarkdownFileFromCache } from "./io";
 import { HookObj } from "./hook";
+import { renderImage } from "./image";
 
 const md = MarkdownIt({ html: true });
 
@@ -16,11 +17,19 @@ function getMergeProps(
   return {} as any;
 }
 
-async function renderMarkdownFile(filePath: string): Promise<HookObj> {
+export async function renderMarkdownFile(filePath: string): Promise<HookObj> {
   const fileDescriptor = await getMarkdownFileFromCache(filePath);
   if (fileDescriptor.isReady()) {
     await fileDescriptor.ready();
   }
+
+  // renderImage
+  fileDescriptor.content = await renderImage(
+    filePath,
+    fileDescriptor.content,
+    "markdown"
+  );
+
   const rawContent = fileDescriptor.content;
   let { attributes, body: markdownBody } = readFrontMatter(rawContent) as any;
 
