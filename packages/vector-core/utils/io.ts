@@ -1,4 +1,5 @@
-import { readFile } from "fs/promises";
+import { readFile as fsReadFile } from "fs/promises";
+import { memoize } from "lodash";
 
 export interface FileDescriptor {
   filePath: string;
@@ -10,6 +11,11 @@ export interface FileDescriptor {
   ready: () => Promise<void>;
 }
 
-export async function getMarkdownFileFromCache(filePath: string) {
-  return {} as FileDescriptor;
+async function readFileImp(filePath: string) {
+  const content = (await fsReadFile(filePath)).toString();
+  return {
+    content,
+  } as FileDescriptor;
 }
+
+export const readFile = memoize(readFileImp);
