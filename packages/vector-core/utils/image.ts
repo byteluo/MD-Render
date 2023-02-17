@@ -1,8 +1,26 @@
+import { extname } from "path";
+
+interface ImageRepository {
+  [fileURI: string]: {
+    expires: number;
+    md5: string;
+    filePath: string;
+  };
+}
+
+const imageRepository: ImageRepository = {};
+
+function isImageUrl(url: string) {
+  url = url.toString();
+  const extName = extname(url);
+  return [".jpg", ".jpeg", ".png", "webp"].includes(extName);
+}
+
 const markdownImageRender = {
-  renderHeader(filePath: string, content: string) {
+  async renderHeader(filePath: string, content: string) {
     return "";
   },
-  renderBody(filePath: string, content: string) {
+  async renderBody(filePath: string, content: string) {
     return "";
   },
 };
@@ -19,8 +37,8 @@ export async function renderImage(
       return renderBody(filePath, content);
     } else {
       let [header, body] = content.split(splitFlag);
-      header = renderHeader(filePath, content);
-      body = renderBody(filePath, content);
+      header = await renderHeader(filePath, content);
+      body = await renderBody(filePath, content);
       return header + splitFlag + body;
     }
   }
