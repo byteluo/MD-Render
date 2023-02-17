@@ -1,0 +1,19 @@
+{
+  "name": "vector-core",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "front-matter": "^4.0.2",
+    "markdown-it": "^13.0.1"
+  },
+  "devDependencies": {
+    "@types/markdown-it": "^12.2.3"
+  }
+}
