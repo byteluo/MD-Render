@@ -30,24 +30,24 @@ export async function renderMarkdownFile(
       await fileDescriptor.ready();
     }
 
-    // renderImage
-    fileDescriptor.content = await renderImage(
+    fileDescriptor.content = renderImage(
       filePath,
       fileDescriptor.content,
       "markdown"
     );
 
     const rawContent = fileDescriptor.content;
-    let { attributes, body: markdownBody } = fm(rawContent);
+    let { attributes, body: markdownBody } = fm(rawContent) as any;
 
     const [id, title, ctime, mtime] = [
+      ["id", fileDescriptor.md5],
       ["title", ""],
       ["ctime", 0],
       ["mtime", 0],
     ].map(([key, defaultValue]) =>
       getValueFromObjects(
-        key as any,
-        attributes as any,
+        key as string,
+        attributes,
         fileDescriptor,
         defaultValue
       )
@@ -63,12 +63,13 @@ export async function renderMarkdownFile(
       content: md.render(rawContent),
       _private: {
         filePath,
-        except: false,
+        except: !!attributes.except,
         rawContent,
         markdownBody,
       },
     };
   } catch (error) {
+    console.error(`渲染 ${filePath} 失败\n` + error);
     return null;
   }
 }

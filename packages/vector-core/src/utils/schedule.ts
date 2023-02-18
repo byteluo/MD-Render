@@ -1,10 +1,12 @@
+import os from "os";
+
 export class Scheduler {
   private tasks: Array<() => Promise<any>> = [];
   private running = false;
   private concurrency: number;
   private pendingTasks: Promise<any>[] = [];
 
-  constructor(concurrency: number = Infinity) {
+  constructor(concurrency = os.cpus().length) {
     this.concurrency = concurrency;
   }
 
@@ -18,7 +20,10 @@ export class Scheduler {
   }
 
   private async runTasks(): Promise<void> {
-    while (this.tasks.length > 0 && this.pendingTasks.length < this.concurrency) {
+    while (
+      this.tasks.length > 0 &&
+      this.pendingTasks.length < this.concurrency
+    ) {
       const task = this.tasks.shift();
       const promise = task!();
 

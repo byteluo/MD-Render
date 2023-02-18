@@ -9,7 +9,7 @@ const config = {
   restfulRoot: "/api",
   postUrl: "/#/post/:id",
   encryptKey: "123456",
-  imageDirName: "images",
+  imageDirPath: path.resolve("api/__web_images__"),
   imageReplacer: (el) => {
     function getImagePrefix() {
       if (process.env.mode === "dev") {
@@ -39,9 +39,9 @@ const config = {
   },
 };
 
-const secretConfigFile = fs.statSync("./secret.json");
-if (secretConfigFile.isFile()) {
-  Object.assign(config.cos.secretConfig, require("./secret.json"));
-}
+try {
+  const secretConfigFile = fs.readFileSync("./secret.json").toString();
+  Object.assign(config.cos.secretConfig, JSON.parse(secretConfigFile));
+} catch (err) {}
 
 export default config;
