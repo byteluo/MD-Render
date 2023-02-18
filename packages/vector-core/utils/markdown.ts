@@ -1,6 +1,6 @@
 import fm from "front-matter";
 import MarkdownIt from "markdown-it";
-import { readFile } from "./io";
+import { getFileReader } from "./file.reader";
 import { HookObj } from "./hook";
 import { renderImage } from "./image";
 
@@ -17,8 +17,8 @@ function getMergeProps(
 }
 
 export async function renderMarkdownFile(filePath: string): Promise<HookObj> {
-  const fileDescriptor = await readFile(filePath);
-  if (fileDescriptor.isReady()) {
+  const fileDescriptor = getFileReader(filePath).getFileDescriptor();
+  if (!fileDescriptor.isReady()) {
     await fileDescriptor.ready();
   }
 
