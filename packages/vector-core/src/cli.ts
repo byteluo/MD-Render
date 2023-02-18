@@ -1,6 +1,8 @@
 import { renderMarkdownFile } from "./utils";
 import { parallelRun } from "./utils/common";
+import { imageSchedule } from "./utils/image/image.schedule";
 import { getMarkdownFiles } from "./utils/io";
+import { Scheduler } from "./utils/schedule";
 
 async function start() {
   console.time("read");
@@ -15,6 +17,7 @@ async function start() {
   });
   const result = await parallelRun(jobs);
   console.timeEnd("parallelRun");
+  await imageSchedule.waitForAllTasks();
 }
 
 start();
