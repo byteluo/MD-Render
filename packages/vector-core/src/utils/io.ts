@@ -1,21 +1,31 @@
 import fs from "fs/promises";
 import path from "path";
-import { Worker } from "worker_threads";
 
-export async function ensureDirExists(path) {
-  try {
-    const stat = await fs.stat(path);
-    if (!stat.isDirectory()) {
-      throw new Error(`${path} exists but is not a directory`);
+export const ensureDirExists = (function () {
+  const dirCache = new Set();
+  return async function (filePath: string) {
+    if (dirCache.has(filePath)) {
+      return;
     }
-  } catch (err) {
-    if (err.code === "ENOENT") {
-      await fs.mkdir(path, { recursive: true });
-    } else {
-      throw err;
+    try {
+      const stat = await fs.stat(filePath);
+      if (!stat.isDirectory()) {
+        throw new Error(`${filePath} exists but is not a directory`);
+      }
+    } catch (err) {
+      if (err.code === "ENOENT") {
+        // 双重校验锁
+        if (dirCache.has(filePath)) {
+          return;
+        }
+        await fs.mkdir(filePath, { recursive: true });
+        dirCache.add(filePath);
+      } else {
+        throw err;
+      }
     }
-  }
-}
+  };
+})();
 
 export async function getMarkdownFiles(folderPath: string) {
   const result = [];
