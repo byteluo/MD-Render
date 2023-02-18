@@ -17,7 +17,10 @@ async function start() {
   });
   const result = await parallelRun(jobs);
   console.timeEnd("parallelRun");
+
+  console.time("image");
   await imageSchedule.waitForAllTasks();
+  console.timeEnd("image");
 }
 
 start();
