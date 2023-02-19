@@ -1,13 +1,11 @@
 import { HookObj } from "../utils";
 
-type Hook = (
+export type Hook = (
   hookObjs: Array<HookObj>
 ) => Array<HookObj> | Promise<Array<HookObj>>;
 
-export const hooks: Array<Hook> = [];
-
-function saveHookObj(hookObjs: HookObj[]) {
-  return hookObjs;
+export function registHook(hook: Hook) {
+  hooks.push(hook);
 }
 
-hooks.push(saveHookObj);
+export const hooks: Array<Hook> = [];

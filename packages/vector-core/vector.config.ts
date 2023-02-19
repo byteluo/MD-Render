@@ -10,7 +10,7 @@ const config = {
   postUrl: "/#/post/:id",
   encryptKey: "123456",
   imageDirPath: path.resolve("api/__web_images__"),
-  imageReplacer: (el) => {
+  imageReplacer: (el: any) => {
     function getImagePrefix() {
       if (process.env.mode === "dev") {
         return "http://127.0.0.1:4000/images/";

@@ -58,6 +58,8 @@ export async function renderMarkdownFile(
       md5: fileDescriptor.md5,
       ctime,
       title,
+      cover: attributes.cover,
+      toc: [],
       mtime,
       word: markdownBody.length,
       content: md.render(rawContent),

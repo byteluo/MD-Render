@@ -20,7 +20,9 @@ async function start() {
   await imageSchedule.waitForAllTasks();
   console.timeEnd("image");
 
+  console.time("hook");
   executeHooks(hookObj);
+  console.timeEnd("hook");
 }
 
 start();
