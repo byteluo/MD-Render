@@ -54,6 +54,7 @@ function generateCover(hookObjs: HookObj[]) {
   return hookObjs;
 }
 
+// 不一定会执行
 function saveObj(hookObjs: HookObj[]) {
   return hookObjs;
 }
