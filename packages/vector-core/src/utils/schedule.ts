@@ -1,5 +1,3 @@
-import os from "os";
-
 export class Scheduler {
   private tasks: Array<Promise<any>> = [];
 
@@ -8,6 +6,8 @@ export class Scheduler {
   }
 
   public async waitForAllTasks(): Promise<any[]> {
-    return await Promise.all(this.tasks);
+    const res = await Promise.all(this.tasks);
+    this.tasks = [];
+    return res;
   }
 }
