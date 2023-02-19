@@ -4,6 +4,7 @@ import os from "os";
 
 const config = {
   tmpDir: os.tmpdir(),
+  dataDir: "C:\\Users\\Treecat\\Desktop\\vector\\source",
   sourceDir: path.resolve("source"),
   distDir: path.resolve("api"),
   restfulRoot: "/api",

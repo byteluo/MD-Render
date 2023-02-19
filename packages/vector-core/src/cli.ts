@@ -6,9 +6,7 @@ import { getMarkdownFiles } from "./utils/io";
 
 async function start() {
   console.time("read");
-  const markdownFiles = await getMarkdownFiles(
-    "C:\\Users\\Treecat\\Desktop\\vector\\source"
-  );
+  
   console.timeEnd("read");
 
   console.time("parallelRun");
