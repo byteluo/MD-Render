@@ -1,8 +1,13 @@
 import { HookObj } from "../utils";
 import { getStringMD5 } from "../utils/common";
+import { Scheduler } from "../utils/schedule";
+import fs from "fs/promises";
+import path from "path";
+import { getRuntime } from "../runtime";
+import { ensureDirExists } from "../utils/io";
 
 function filterExcept(hookObjs: HookObj[]) {
-  return hookObjs.filter((el) => el._private.except);
+  return hookObjs.filter((el) => !el._private.except);
 }
 
 function generatePostToc(hookObjs: HookObj[]) {
@@ -48,14 +53,24 @@ function generateCover(hookObjs: HookObj[]) {
         hookObj.cover = res[1];
       }
     });
-  hookObjs.forEach((el) => {
-    console.log(el.cover);
-  });
   return hookObjs;
 }
 
 // 不一定会执行
 function saveObj(hookObjs: HookObj[]) {
+  const saveScheduler = new Scheduler();
+  hookObjs.forEach((obj) => {
+    saveScheduler.addAsyncTask(async () => {
+      const savePath = getRuntime().getMarkdownRenderPath(
+        obj._private.filePath,
+        obj.id
+      );
+      const { _private, ...saveObj } = obj;
+      await ensureDirExists(path.dirname(savePath));
+      console.log(savePath);
+      await fs.writeFile(savePath, JSON.stringify(saveObj));
+    });
+  });
   return hookObjs;
 }
 

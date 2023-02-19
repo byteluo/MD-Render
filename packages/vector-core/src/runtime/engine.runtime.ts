@@ -1,4 +1,6 @@
 import { config, initConfig } from "./config";
+import path from "path";
+import { getStringMD5 } from "../utils/common";
 
 export async function initEngineRuntime() {
   await initConfig();
@@ -12,7 +14,18 @@ export function getRuntime() {
     },
     getImageRenderUrl(imageName: string) {},
     getImageVectorPath(imageName: string) {
-      return "";
+      return path.resolve(config.distDir, config.imageDirName, imageName);
+    },
+    getMarkdownRenderPath(filePath: string, id: string) {
+      const relativePath = filePath.replace(config.dataDir, "");
+      const dirName = path.dirname(relativePath);
+      if (dirName == path.sep) {
+        return path
+          .join(config.distDir, relativePath)
+          .replace(/\.md$/, ".json");
+      } else {
+        return path.join(config.distDir, dirName, id + ".json");
+      }
     },
   };
 }
