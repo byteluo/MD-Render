@@ -1,5 +1,4 @@
 import { renderMarkdownFile } from "./utils";
-import { parallelRun } from "./utils/common";
 import { imageSchedule } from "./utils/image/image.schedule";
 import { getMarkdownFiles } from "./utils/io";
 
@@ -11,15 +10,14 @@ async function start() {
   console.timeEnd("read");
 
   console.time("parallelRun");
-  const jobs = files.flat(Infinity).map(async (file) => {
-    return await renderMarkdownFile(file);
-  });
-  const result = await parallelRun(jobs);
+  const jobs = files.map((el) => el.map(renderMarkdownFile));
+  const result = await Promise.all(jobs.flat());
   console.timeEnd("parallelRun");
 
   console.time("image");
   await imageSchedule.waitForAllTasks();
   console.timeEnd("image");
+
 }
 
 start();
