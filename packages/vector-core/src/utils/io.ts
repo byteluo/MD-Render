@@ -45,9 +45,7 @@ export async function getMarkdownFiles(folderPath: string) {
         markdownFiles.push(filePath);
       }
     }
-    if (markdownFiles.length > 0) {
-      result.push(markdownFiles);
-    }
+    result.push(...markdownFiles);
   }
   await traverse(folderPath);
   return result;
