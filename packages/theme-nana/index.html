@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <link rel="icon" href="/favicon.png" />
+    <link
+      href="/http_cdn.bootcdn.net_ajax_libs_animate.css_4.1.1_animate.compat.css"
+      rel="stylesheet"
+    />
+    <title>Treecat</title>
+    <meta name="description" content="Treecat 的个人博客，罗浩的经验分享" />
+    <style>
+      body {
+        background: #f0f0f0;
+        background-size: 100% 50vh;
+      }
+
+      #app {
+        position: relative;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></script>
+    <script>
+      function onTidioChatApiReady() {
+        tidioChatApi.setColorPalette("#333333");
+        tidioChatApi.hide();
+        window.tidioChatApi.on("close", () => {
+          tidioChatApi.hide();
+        });
+      }
+      document.addEventListener("tidioChat-ready", onTidioChatApiReady);
+    </script>
+  </body>
+</html>

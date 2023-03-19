@@ -1,0 +1,118 @@
+.doc {
+    color: @color-normal-text;
+    overflow-wrap: break-word;
+    
+
+    pre {
+        overflow: auto;
+    }
+
+    ol {
+        list-style: decimal;
+        margin-left: 24px;
+        padding: 0;
+    }
+
+    ul {
+        list-style-type: disc;
+        margin-left: 24px;
+
+        li {
+            margin-bottom: 12px;
+        }
+    }
+
+    table {
+        margin-top: 8px;
+    }
+
+    td,
+    th {
+        border: 2px solid rgb(152, 152, 152);
+        padding: 8px 16px;
+    }
+
+    blockquote {
+        background: @color-card-background-secondary;
+        margin: 0;
+        margin: 8px 0;
+        border-radius: 8px;
+        padding: 8px 16px;
+
+        ul,
+        ol {
+            li {
+                margin-bottom: 16px !important;
+            }
+        }
+
+        ol {
+            list-style: decimal;
+        }
+
+        p {
+            margin-bottom: 0;
+        }
+    }
+
+    p + p {
+        margin: 16px 0 0;
+    }
+
+    p {
+        font-size: @size-normal-font;
+        line-height: 1.8;
+        margin: 0;
+        color: @color-normal-text;
+    }
+
+    pre {
+        background: @color-card-background-secondary;
+        padding: 8px;
+        border-radius: 8px;
+    }
+
+    @media screen and (max-width: @size-mobile) {
+    }
+
+    h2,
+    h3,
+    h4 {
+        font-weight: 600;
+        margin-bottom: 8px;
+        margin-top: 24px;
+        color: @color-normal-text;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+
+    h4 {
+        font-size: 14px;
+    }
+
+    img {
+        display: block;
+        margin: auto;
+        border-radius: 8px;
+        box-sizing: border-box;
+        max-width: 100%;
+        min-width: 200px;
+        max-height: 600px;
+        object-fit: cover;
+        border: 1px solid @color-card-background-secondary;
+    }
+
+    video {
+        width: 100%;
+    }
+
+    .hljs {
+        background: @color-card-background-secondary;
+    }
+}

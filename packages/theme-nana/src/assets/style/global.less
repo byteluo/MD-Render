@@ -1,0 +1,140 @@
+@import './var.less';
+@import './doc.less';
+@import './code.less';
+
+body {
+    background-color: @color-card-background-secondary;
+    font-family: Helvetica, 'Hiragino Sans GB', 'Microsoft Yahei', '微软雅黑',
+        Arial, sans-serif;
+    a {
+        text-decoration: none;
+        color: @color-primary;
+
+        &:hover {
+            color: @color-primary-dark;
+        }
+    }
+}
+
+.clickable {
+    cursor: pointer;
+    border-radius: 6px;
+    &:hover {
+        background: @color-card-background-secondary;
+    }
+}
+
+div,
+p {
+    color: @color-normal-text;
+}
+
+.root {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    padding: 0;
+    overflow: auto;
+    margin: 0;
+    background: @color-card-background;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.rotation {
+    /*动画属性*/
+    animation: myAnimation 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* 定义动画如何执行 */
+@keyframes myAnimation {
+    /* 写法1 这种写法只能定义开始和结束时的动画 */
+    form {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.card {
+    background: @color-card-background !important;
+    overflow: hidden;
+    box-shadow: @shadow-2;
+    border-radius: @size-card-radius;
+}
+
+body.brightness {
+    .knowledge-graph {
+        img {
+            filter: brightness(1);
+        }
+    }
+
+    .brand {
+        img {
+            filter: invert(1);
+        }
+    }
+
+    .chooser-cover-wrapper {
+        filter: brightness(0.8) !important;
+    }
+
+    .page-post-detail {
+        .post-header {
+            .post-cover-wrapper {
+                filter: brightness(0.8) !important;
+            }
+            .post-title,
+            .post-meta-list {
+                filter: invert(1);
+            }
+        }
+    }
+
+    .cat-container {
+        filter: brightness(1);
+    }
+
+    .flag-list {
+        .flag-item {
+            color: @color-normal-text;
+        }
+    }
+}
+
+.search-dialog,
+.post-toc-content,
+.doc {
+    ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+    }
+    ::-webkit-scrollbar-thumb,
+    ::-webkit-scrollbar-thumb:horizontal {
+        border-radius: 16px;
+        background-color: @color-primary-light;
+    }
+    ::-webkit-scrollbar-track,
+    ::-webkit-scrollbar-track:horizontal {
+        background-color: @color-card-background-secondary;
+        &:hover {
+            width: 15px;
+        }
+    }
+    ::-webkit-scrollbar-corner {
+        background-color: @color-primary;
+    }
+}

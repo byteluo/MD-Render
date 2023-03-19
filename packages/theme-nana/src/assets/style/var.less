@@ -1,0 +1,50 @@
+body.brightness {
+    --color-card-background-secondary: #d0d0d0;
+    --color-card-background: #e1e1e1;
+    --color-meta-text: #333;
+    --color-normal-text: #222;
+    --color-primary: rgb(0, 174, 174);
+    --color-light: rgba(0, 174, 174, 0.473);
+    --color-primary-dark: rgb(0, 174, 174);
+    --shadow-1: rgb(0 0 0 / 8%) 0px 3px 6px, rgb(0 0 0 / 10%) 0px 3px 6px;
+    --shadow-2: rgb(0 0 0 / 8%) 0px 3px 3px, rgb(0 0 0 / 10%) 0px 3px 3px;
+}
+
+// --------------- color
+@color-primary: var(--color-primary, rgb(255, 232, 158));
+@color-primary-light: var(--color-primary, rgb(101, 101, 101));
+@color-primary-dark: var(--color-primary-dark, rgb(255, 221, 108));
+@color-card-background-secondary: var(--color-card-background-secondary, #444);
+@color-card-background: var(--color-card-background, #333);
+@color-normal-text: var(--color-normal-text, #ccc);
+@color-meta-text: var(--color-meta-text, #999);
+
+// --------------- size
+@size-max-valid-content: 1000px;
+@size-mobile: 750px;
+@size-card-radius: 8px;
+
+@size-meta-font: 13px;
+@size-normal-font: 17px;
+@size-title-font: 21px;
+
+@size-card-padding-big: 24px 40px;
+@size-card-padding: 16px 24px;
+@size-card-padding-small: 12px 12px 12px 16px;
+
+// --------------- font
+@font-serif: Lora, Noto Serif SC, ui-serif, Georgia, Cambria, times new roman,
+    Times, serif;
+
+// --------------- effect
+@shadow-1: var(
+    --shadow-1,
+    rgb(0 0 0 / 30%) 0px 3px 3px,
+    rgb(0 0 0 / 15%) 0px 3px 3px
+);
+
+@shadow-2: var(
+    --shadow-2,
+    rgb(0 0 0 / 30%) 0px 3px 3px,
+    rgb(0 0 0 / 15%) 0px 3px 3px
+);
