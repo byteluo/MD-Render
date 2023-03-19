@@ -13,10 +13,13 @@ export async function getAboutInfo(lang) {
 }
 
 export async function getPostList() {
-  return [];
-  // return (await importData("post/list.json")).items;
+  return (await importData("post/list.json")).items;
 }
 
-async function getPostDetail(id: string) {
+export async function getPostDetail(id: string) {
   return importData("post/" + id + ".json");
+}
+
+export async function getThinkingData() {
+  return importData("thinking.json");
 }
