@@ -4,7 +4,8 @@
     "module": "commonjs",
     "esModuleInterop": true,
     "sourceMap": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "outDir": "./dist"
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]

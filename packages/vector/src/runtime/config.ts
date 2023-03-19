@@ -1,6 +1,5 @@
 import path from "path";
 import fs from "fs/promises";
-import os from "os";
 import { merge } from "lodash";
 
 interface VectorConfig {
@@ -11,12 +10,15 @@ interface VectorConfig {
   distDir: string;
 }
 
-export const config: VectorConfig = {} as any;
+export const config: VectorConfig = { uninitialized: true } as any;
 
 export async function initConfig() {
+  if ((config as any).uninitialized) {
+    return;
+  }
   const rootDir = path.resolve(__dirname, "../../../..");
-  const defultTmpDir = path.resolve(rootDir, "_tmp");
-  const distDir = path.resolve(defultTmpDir, "dist");
+  const defultTmpDir = path.resolve(__dirname, "../..", "_tmp");
+  const distDir = path.resolve(__dirname, "../..", "dist");
   const defualtDataDir = path.resolve(rootDir, "packages/vector-data");
   const rootUrl = "http://127.0.0.1:3000";
   const userConfig = {};

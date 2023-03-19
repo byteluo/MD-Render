@@ -1,8 +1,7 @@
-import { config } from "./runtime";
-import path from "path";
+// import path from "path-browserify";
 
 async function importData(key: string) {
-  return import(path.resolve(config.tmpDir, key));
+  return import("../dist/" + key);
 }
 
 export async function getAboutInfo(lang) {

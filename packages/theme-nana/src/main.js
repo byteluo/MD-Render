@@ -6,9 +6,6 @@ import VueAnimateOnScroll from "vue3-animate-onscroll";
 import animated from "animate.css";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { getAboutInfo } from "vector-core";
-
-getAboutInfo()
 
 import {
   faUser,
