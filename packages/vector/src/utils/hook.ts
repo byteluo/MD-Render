@@ -7,13 +7,15 @@ interface TocItem {
 export interface HookObj {
   ctime: number;
   mtime: number;
+  // 目录
   toc: Array<any>;
   cover?: string;
   _private: {
     filePath: string;
     except: boolean;
+    // 文章内容
     rawContent: string;
-    markdownBody: string;
+    rawContentBody: string;
   };
   title: string;
   id: string;

@@ -1,6 +1,6 @@
-const nana = { dev: "", devPath: "", build: "", buildPath: "" };
+const path = require("path");
 
 module.exports = {
-  dataDir: "C:\\Users\\Treecat\\Desktop\\vector\\source",
-  theme: nana,
+    dataDir: path.resolve(__dirname, "article"),
+    theme: path.resolve(__dirname, "packages/theme-nana")
 };
