@@ -17,7 +17,7 @@ export function getRuntime() {
         getImageVectorPath(imageName: string) {
             return path.resolve(config.distDir, config.imageDirName, imageName);
         },
-        getMarkdownRenderPath(filePath: string, id: string) {
+        getMarkdownRenderPath(filePath: string, targetName: string) {
             const relativePath = filePath.replace(config.dataDir, "");
             const dirName = path.dirname(relativePath);
             if (dirName == path.sep) {
@@ -28,7 +28,7 @@ export function getRuntime() {
                 if (filePath.endsWith("index.json")) {
                     return path.join(config.distDir, dirName, "index.json");
                 } else {
-                    return path.join(config.distDir, dirName, id + ".json");
+                    return path.join(config.distDir, dirName, targetName + ".json");
                 }
             }
         }

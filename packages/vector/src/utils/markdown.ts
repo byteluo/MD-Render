@@ -1,7 +1,7 @@
 import fm from "front-matter";
 import MarkdownIt from "markdown-it";
 import { getFileReader } from "./file.reader";
-import { HookObj } from "./hook";
+import { PostHookObj } from "./hook";
 import { renderImage } from "./image";
 
 const md = MarkdownIt({ html: true });
@@ -23,7 +23,7 @@ function getValueFromObjects(
 
 export async function renderMarkdownFile(
     filePath: string
-): Promise<HookObj | null> {
+): Promise<PostHookObj | null> {
     try {
         const fileDescriptor = getFileReader(filePath).getFileDescriptor();
         if (!fileDescriptor.isReady()) {
@@ -54,6 +54,7 @@ export async function renderMarkdownFile(
         );
 
         return {
+            type: "PostHookObj",
             id,
             md5: fileDescriptor.md5,
             ctime,
